@@ -10,7 +10,14 @@ public class Square extends Shape {
 
     @Override
     public void draw() {
-        gc.setFill(Color.GREEN);
+
+        if (isSelected) {
+            gc.setFill(Color.BLUE);
+        } else {
+            gc.setFill(Color.GREEN);
+        }
+
+        //gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
 

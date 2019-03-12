@@ -18,19 +18,25 @@ public class Board {
         Shape ball = new Ball(gc, 10, 10);
         shapes.add(ball);
         selected = ball;
+        selected.setSelected(true);
     }
     public void addSquare() {
         Shape square = new Square(gc, 10, 10);
         shapes.add(square);
         selected = square;
+        selected.setSelected(true);
+
+
     }
 
     public void select(int index) {
+        for (Shape shape : shapes) {
+            shape.setSelected(false);
+        }
         if (index <= shapes.size()) {
             selected = shapes.get(index - 1);
-
+            selected.setSelected(true);
         }
-
     }
 
     public void move(int xSpeed, int ySpeed) {

@@ -18,7 +18,7 @@ public class Ball extends Shape {
             gc.setFill(Color.RED);
         }
 
-        gc.setFill(Color.RED);
+        //gc.setFill(Color.RED);
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
 
