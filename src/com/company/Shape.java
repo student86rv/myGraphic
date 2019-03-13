@@ -21,16 +21,27 @@ public abstract class Shape {
         isSelected = selected;
     }
 
-    public void move(int xSpeed, int ySpeed) {
-        x += xSpeed;
-        y += ySpeed;
+    public void zoomIn() {
+        SIZE += 1;
+    }
 
-//        if (x + SIZE < gc.getCanvas().getWidth()) {
-//
-//        }
-//        if (y + SIZE < gc.getCanvas().getHeight()) {
-//
-//        }
+    public void zoomOut() {
+        SIZE -= 1;
+    }
+
+    public void move(int xSpeed, int ySpeed) {
+
+        boolean xValueInBoard = (xSpeed > 0 && x + SIZE < gc.getCanvas().getWidth())
+                || (xSpeed < 0 && x > 0);
+        boolean yValueInBoard = (ySpeed > 0 && y + SIZE < gc.getCanvas().getHeight())
+                || (ySpeed < 0 && y > 0);
+
+        if (xValueInBoard) {
+            x += xSpeed;
+        }
+        if (yValueInBoard) {
+            y += ySpeed;
+        }
     }
 
     public abstract void draw();

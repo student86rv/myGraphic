@@ -17,7 +17,6 @@ public class Square extends Shape {
             gc.setFill(Color.GREEN);
         }
 
-        //gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
 

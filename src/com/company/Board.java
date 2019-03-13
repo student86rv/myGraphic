@@ -17,26 +17,37 @@ public class Board {
     public void addBall() {
         Shape ball = new Ball(gc, 10, 10);
         shapes.add(ball);
-        selected = ball;
-        selected.setSelected(true);
+        select(ball);
     }
     public void addSquare() {
         Shape square = new Square(gc, 10, 10);
         shapes.add(square);
-        selected = square;
-        selected.setSelected(true);
-
-
+        select(square);
+    }
+    public void addTriangle() {
+        Shape triangle = new Triangle(gc, 10, 10);
+        shapes.add(triangle);
+        select(triangle);
     }
 
-    public void select(int index) {
-        for (Shape shape : shapes) {
-            shape.setSelected(false);
+    public void select(Shape shape) {
+        for (Shape s : shapes) {
+            s.setSelected(false);
         }
+        selected = shape;
+        selected.setSelected(true);
+    }
+    public void selectByIndex(int index) {
         if (index <= shapes.size()) {
-            selected = shapes.get(index - 1);
-            selected.setSelected(true);
+            select(shapes.get(index - 1));
         }
+    }
+
+    public void selectedZoomIn() {
+        selected.zoomIn();
+    }
+    public void selectedZoomOut() {
+        selected.zoomOut();
     }
 
     public void move(int xSpeed, int ySpeed) {

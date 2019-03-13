@@ -14,15 +14,15 @@ public class Ball extends Shape {
 
         if (isSelected) {
             gc.setFill(Color.BLUE);
-        } else {
+        }
+        else {
             gc.setFill(Color.RED);
         }
 
-        //gc.setFill(Color.RED);
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
 
         gc.fillOval(x, y, SIZE, SIZE);
-        gc.strokeOval(x, y, SIZE, SIZE);
+        gc.strokeOval(x, y , SIZE, SIZE);
     }
 }
