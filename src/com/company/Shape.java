@@ -22,11 +22,10 @@ public abstract class Shape {
     }
 
     public void zoomIn() {
-        SIZE += 1;
+        SIZE ++;
     }
-
     public void zoomOut() {
-        SIZE -= 1;
+        SIZE --;
     }
 
     public void move(int xSpeed, int ySpeed) {
