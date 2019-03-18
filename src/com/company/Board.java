@@ -14,6 +14,7 @@ public class Board {
     public Board(GraphicsContext gc) {
         this.gc = gc;
     }
+
     public void addBall() {
         Shape ball = new Ball(gc, 10, 10);
         shapes.add(ball);
@@ -30,18 +31,28 @@ public class Board {
         select(triangle);
     }
 
+    void add(Shape shape) {
+        shapes.add(shape);
+    }
+
     public void delete() {
         shapes.remove(selected);
     }
 
     public void addInGroup() {
         if(activeGroup == null) {
-            Group group = new Group(gc, selected.getX(), selected.getY());
+            Group group = new Group(gc, this, selected.getX(), selected.getY());
             shapes.add(group);
             activeGroup = group;
         }
         activeGroup.add(selected);
+        shapes.remove(selected); //!!!!!!!!!!!!!!!!!!!!!!
         activeGroup.setSelected(true);
+    }
+    public void disconnectGroup() {
+        activeGroup.returnShapesToBoard();
+        shapes.remove(activeGroup);
+        selected = shapes.get(0);
     }
 
     public void selectNext() {
@@ -68,17 +79,16 @@ public class Board {
         selected = shape;
         selected.setSelected(true);
     }
-    public void selectByIndex(int index) {
-        if (index <= shapes.size()) {
-            select(shapes.get(index - 1));
-        }
-    }
 
     public void selectedZoomIn() {
         selected.zoomIn();
     }
     public void selectedZoomOut() {
         selected.zoomOut();
+    }
+
+    public void save() {
+        FileHelper.writeToFile(this, "savefile.txt");
     }
 
     public void move(int xSpeed, int ySpeed) {

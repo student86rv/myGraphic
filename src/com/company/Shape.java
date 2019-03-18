@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Shape {
 
+    public enum ShapeType {BALL, SQUARE, TRIANGLE, GROUP}
+
     protected double SIZE = 30;
 
     protected GraphicsContext gc;
