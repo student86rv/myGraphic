@@ -17,6 +17,14 @@ public abstract class Shape {
         this.y = y;
     }
 
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
     public void setSelected(boolean selected) {
         isSelected = selected;
     }

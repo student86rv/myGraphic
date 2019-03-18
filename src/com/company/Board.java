@@ -9,11 +9,11 @@ public class Board {
     private GraphicsContext gc;
     private List<Shape> shapes = new ArrayList<>();
     private Shape selected;
+    private Group activeGroup;
 
     public Board(GraphicsContext gc) {
         this.gc = gc;
     }
-
     public void addBall() {
         Shape ball = new Ball(gc, 10, 10);
         shapes.add(ball);
@@ -28,6 +28,37 @@ public class Board {
         Shape triangle = new Triangle(gc, 10, 10);
         shapes.add(triangle);
         select(triangle);
+    }
+
+    public void delete() {
+        shapes.remove(selected);
+    }
+
+    public void addInGroup() {
+        if(activeGroup == null) {
+            Group group = new Group(gc, selected.getX(), selected.getY());
+            shapes.add(group);
+            activeGroup = group;
+        }
+        activeGroup.add(selected);
+        activeGroup.setSelected(true);
+    }
+
+    public void selectNext() {
+        int selectedIndex = shapes.indexOf(selected);
+        selectedIndex++;
+        if(selectedIndex >= shapes.size()) {
+            selectedIndex = 0;
+        }
+        select(shapes.get(selectedIndex));
+    }
+    public void selectPrevious() {
+        int selectedIndex = shapes.indexOf(selected);
+        selectedIndex--;
+        if(selectedIndex < 0) {
+            selectedIndex = shapes.size() - 1;
+        }
+        select(shapes.get(selectedIndex));
     }
 
     public void select(Shape shape) {
