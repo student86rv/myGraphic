@@ -9,6 +9,10 @@ public class Ball extends Shape {
         super(gc, x, y);
     }
 
+    public Ball(GraphicsContext gc, double SIZE, double x, double y) {
+        super(gc, SIZE, x, y);
+    }
+
     @Override
     public void draw() {
 

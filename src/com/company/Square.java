@@ -8,6 +8,10 @@ public class Square extends Shape {
         super(gc, x, y);
     }
 
+    public Square(GraphicsContext gc, double SIZE, double x, double y) {
+        super(gc, SIZE, x, y);
+    }
+
     @Override
     public void draw() {
 

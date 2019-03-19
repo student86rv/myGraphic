@@ -20,33 +20,33 @@ public class Board {
         shapes.add(ball);
         select(ball);
     }
-	/*public void addBall(x, y, size){
+	public void addBall(double x, double y, double size){
 		Shape ball = new Ball(gc, x, y, size);
         shapes.add(ball);
         select(ball);
-	}*/
+	}
 	
     public void addSquare() {
         Shape square = new Square(gc, 10, 10);
         shapes.add(square);
         select(square);
     }
-	 /*public void addSquare(x, y, size) {
+	 public void addSquare(double x, double y, double size) {
         Shape square = new Square(gc, x, y, size);
         shapes.add(square);
         select(square);
-    }*/
+    }
 	
     public void addTriangle() {
         Shape triangle = new Triangle(gc, 10, 10);
         shapes.add(triangle);
         select(triangle);
     }
-	/*public void addTriangle(x, y, size) {
+	public void addTriangle(double x, double y, double size) {
         Shape triangle = new Triangle(gc, x, y, size);
         shapes.add(triangle);
         select(triangle);
-    }*/
+    }
 	
     public void delete() {
         shapes.remove(selected);
@@ -104,8 +104,13 @@ public class Board {
     }
 
     public void save() {
-		
-        FileHelper.writeToFile(this, "savefile.txt");
+
+        PrimitiveShape.PrimitiveBoard primitiveBoard = new PrimitiveShape.PrimitiveBoard();
+
+        for (Shape shape: shapes) {
+            primitiveBoard.add(PrimitiveShape.shapeToPrimitive(shape));
+        }
+        //FileHelper.writeToFile(this, "savefile.txt");
     }
 
     public void move(int xSpeed, int ySpeed) {

@@ -9,6 +9,10 @@ public class Triangle extends Shape {
         super(gc, x, y);
     }
 
+    public Triangle(GraphicsContext gc, double SIZE, double x, double y) {
+        super(gc, SIZE, x, y);
+    }
+
     @Override
     public void draw() {
         double[] xPoints = {x, x + SIZE / 2, x + SIZE};

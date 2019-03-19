@@ -19,6 +19,13 @@ public abstract class Shape {
         this.y = y;
     }
 
+    public Shape( GraphicsContext gc, double SIZE, double x, double y) {
+        this.gc = gc;
+        this.x = x;
+        this.y = y;
+        this.SIZE = SIZE;
+    }
+
     public double getX() {
         return x;
     }
