@@ -58,8 +58,12 @@ public class KeyHelper {
                         board.disconnectGroup();
                         break;
 
-//                    case F5:
-//                        board.save();
+                    case F5:
+                        board.save();
+                        break;
+                    case F6:
+                        board.load();
+
                     default:
                         break;
                 }

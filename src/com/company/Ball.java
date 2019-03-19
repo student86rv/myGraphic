@@ -5,12 +5,8 @@ import javafx.scene.paint.Color;
 
 public class Ball extends Shape {
 
-    public Ball(GraphicsContext gc, double x, double y) {
-        super(gc, x, y);
-    }
-
-    public Ball(GraphicsContext gc, double SIZE, double x, double y) {
-        super(gc, SIZE, x, y);
+    public Ball(GraphicsContext gc, double size, double x, double y) {
+        super(gc, size, x, y);
     }
 
     @Override
@@ -26,7 +22,7 @@ public class Ball extends Shape {
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
 
-        gc.fillOval(x, y, SIZE, SIZE);
-        gc.strokeOval(x, y , SIZE, SIZE);
+        gc.fillOval(x, y, size, size);
+        gc.strokeOval(x, y , size, size);
     }
 }

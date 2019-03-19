@@ -10,40 +10,41 @@ public class Board {
     private List<Shape> shapes = new ArrayList<>();
     private Shape selected;
     private Group activeGroup;
+    private final double DEFAULT_SIZE = 30;
 
     public Board(GraphicsContext gc) {
         this.gc = gc;
     }
 
     public void addBall() {
-        Shape ball = new Ball(gc, 10, 10);
+        Shape ball = new Ball(gc, DEFAULT_SIZE, 10, 10);
         shapes.add(ball);
         select(ball);
     }
-	public void addBall(double x, double y, double size){
-		Shape ball = new Ball(gc, x, y, size);
+	public void addBall(double size, double x, double y){
+		Shape ball = new Ball(gc, size, x, y);
         shapes.add(ball);
         select(ball);
 	}
 	
     public void addSquare() {
-        Shape square = new Square(gc, 10, 10);
+        Shape square = new Square(gc, DEFAULT_SIZE,10, 10);
         shapes.add(square);
         select(square);
     }
-	 public void addSquare(double x, double y, double size) {
-        Shape square = new Square(gc, x, y, size);
+	 public void addSquare(double size, double x, double y) {
+        Shape square = new Square(gc, size, x, y);
         shapes.add(square);
         select(square);
     }
 	
     public void addTriangle() {
-        Shape triangle = new Triangle(gc, 10, 10);
+        Shape triangle = new Triangle(gc, DEFAULT_SIZE,10, 10);
         shapes.add(triangle);
         select(triangle);
     }
-	public void addTriangle(double x, double y, double size) {
-        Shape triangle = new Triangle(gc, x, y, size);
+	public void addTriangle(double size, double x, double y) {
+        Shape triangle = new Triangle(gc, size, x, y);
         shapes.add(triangle);
         select(triangle);
     }
@@ -54,7 +55,7 @@ public class Board {
 
     public void addInGroup() {
         if(activeGroup == null) {
-            Group group = new Group(gc, selected.getX(), selected.getY());
+            Group group = new Group(gc, DEFAULT_SIZE, selected.getX(), selected.getY());
             shapes.add(group);
             activeGroup = group;
         }
@@ -62,6 +63,7 @@ public class Board {
         shapes.remove(selected);
         activeGroup.setSelected(true);
     }
+
     public void disconnectGroup() {
 		List<Shape> list = activeGroup.getShapesInGroup();
 		for(Shape shape: list) {
@@ -110,7 +112,15 @@ public class Board {
         for (Shape shape: shapes) {
             primitiveBoard.add(PrimitiveShape.shapeToPrimitive(shape));
         }
-        //FileHelper.writeToFile(this, "savefile.txt");
+        FileHelper.writeToFile(primitiveBoard, "savefile.txt");
+    }
+
+    public void load() {
+        PrimitiveShape.PrimitiveBoard tmpBoard = FileHelper.readFromFile("savefile.txt");
+        for (PrimitiveShape primitiveShape: tmpBoard.getList()) {
+            PrimitiveShape.primitiveToShape(this, primitiveShape);
+        }
+        Logger.log("Game loaded from file");
     }
 
     public void move(int xSpeed, int ySpeed) {

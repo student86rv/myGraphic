@@ -1,0 +1,1 @@
+{"list":[{"shapeType":"GROUP","x":10.0,"y":140.0,"size":30.0,"list":[{"shapeType":"BALL","x":125.0,"y":140.0,"size":30.0},{"shapeType":"BALL","x":140.0,"y":210.0,"size":30.0}]}]}

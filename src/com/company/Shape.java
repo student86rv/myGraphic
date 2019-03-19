@@ -6,24 +6,24 @@ public abstract class Shape {
 
     public enum ShapeType {BALL, SQUARE, TRIANGLE, GROUP}
 
-    protected double SIZE = 30;
-
     protected GraphicsContext gc;
+    protected double size = 30;
     protected double x;
     protected double y;
     protected boolean isSelected;
 
-    public Shape(GraphicsContext gc, double x, double y) {
+    /*public Shape(GraphicsContext gc, double x, double y) {
         this.gc = gc;
         this.x = x;
         this.y = y;
-    }
+    }*/
 
-    public Shape( GraphicsContext gc, double SIZE, double x, double y) {
+    public Shape(GraphicsContext gc, double size, double x, double y) {
+        this.size = size;
         this.gc = gc;
         this.x = x;
         this.y = y;
-        this.SIZE = SIZE;
+
     }
 
     public double getX() {
@@ -33,7 +33,7 @@ public abstract class Shape {
         return y;
     }
 	public double getSize() {
-		return SIZE;
+		return size;
 	}
 
     public void setSelected(boolean selected) {
@@ -41,17 +41,17 @@ public abstract class Shape {
     }
 
     public void zoomIn() {
-        SIZE ++;
+        size++;
     }
     public void zoomOut() {
-        SIZE --;
+        size--;
     }
 
     public void move(int xSpeed, int ySpeed) {
 
-        boolean xValueInBoard = (xSpeed > 0 && x + SIZE < gc.getCanvas().getWidth())
+        boolean xValueInBoard = (xSpeed > 0 && x + size < gc.getCanvas().getWidth())
                 || (xSpeed < 0 && x > 0);
-        boolean yValueInBoard = (ySpeed > 0 && y + SIZE < gc.getCanvas().getHeight())
+        boolean yValueInBoard = (ySpeed > 0 && y + size < gc.getCanvas().getHeight())
                 || (ySpeed < 0 && y > 0);
 
         if (xValueInBoard) {

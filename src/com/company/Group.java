@@ -8,8 +8,8 @@ public class Group extends Shape{
 
     private List<Shape> shapesInGroup = new ArrayList<>();
 
-    public Group(GraphicsContext gc, double x, double y) {
-        super(gc, x, y);
+    public Group(GraphicsContext gc, double size, double x, double y) {
+        super(gc, size, x, y);
     }
 
     public void add(Shape shape) {

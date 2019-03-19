@@ -1,18 +1,23 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrimitiveShape {
 
     public static class PrimitiveBoard {
 
-        private List<PrimitiveShape> list;
+        private List<PrimitiveShape> list = new ArrayList<>();
 
         public PrimitiveBoard() {
         }
 
         public void add(PrimitiveShape primitiveShape) {
             list.add(primitiveShape);
+        }
+
+        public List<PrimitiveShape> getList() {
+            return list;
         }
     }
 
@@ -28,19 +33,15 @@ public class PrimitiveShape {
     public Shape.ShapeType getShapeType() {
         return shapeType;
     }
-
     public double getX() {
         return x;
     }
-
     public double getY() {
         return y;
     }
-
     public double getSize() {
         return size;
     }
-
     public List<PrimitiveShape> getList() {
         return list;
     }
@@ -63,7 +64,12 @@ public class PrimitiveShape {
             output.shapeType = Shape.ShapeType.TRIANGLE;
         }
         if (shape instanceof Group) {
-
+            output.shapeType = Shape.ShapeType.GROUP;
+            Group group = (Group) shape;
+            output.list = new ArrayList<PrimitiveShape>();
+            for (Shape tmpShape: group.getShapesInGroup()) {
+                output.list.add(shapeToPrimitive(tmpShape));
+            }
         }
         return output;
     }
@@ -72,19 +78,22 @@ public class PrimitiveShape {
         double x = primitive.getX();
         double y = primitive.getY();
         double size = primitive.getSize();
+        List<PrimitiveShape> list = primitive.getList();
         Shape.ShapeType shapeType = primitive.getShapeType();
         switch (shapeType) {
             case BALL:
-                board.addBall(x, y, size);
+                board.addBall(size, x, y);
                 break;
             case SQUARE:
-                board.addSquare(x, y, size);
+                board.addSquare(size, x, y);
                 break;
             case TRIANGLE:
-                board.addTriangle(x, y, size);
+                board.addTriangle(size, x, y);
                 break;
             case GROUP:
-
+                for (PrimitiveShape tmpPrimitive: list) {
+                    primitiveToShape(board, tmpPrimitive);
+                }
                 break;
             default:
                 break;

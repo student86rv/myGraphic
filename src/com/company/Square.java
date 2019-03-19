@@ -4,12 +4,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Square extends Shape {
-    public Square(GraphicsContext gc, double x, double y) {
-        super(gc, x, y);
-    }
 
-    public Square(GraphicsContext gc, double SIZE, double x, double y) {
-        super(gc, SIZE, x, y);
+    public Square(GraphicsContext gc, double size, double x, double y) {
+        super(gc, size, x, y);
     }
 
     @Override
@@ -24,7 +21,7 @@ public class Square extends Shape {
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
 
-        gc.fillRect(x, y, SIZE, SIZE);
-        gc.strokeRect(x, y, SIZE, SIZE);
+        gc.fillRect(x, y, size, size);
+        gc.strokeRect(x, y, size, size);
     }
 }
