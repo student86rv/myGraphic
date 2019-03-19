@@ -31,26 +31,25 @@ public class Board {
         select(triangle);
     }
 
-    void add(Shape shape) {
-        shapes.add(shape);
-    }
-
     public void delete() {
         shapes.remove(selected);
     }
 
     public void addInGroup() {
         if(activeGroup == null) {
-            Group group = new Group(gc, this, selected.getX(), selected.getY());
+            Group group = new Group(gc, selected.getX(), selected.getY());
             shapes.add(group);
             activeGroup = group;
         }
         activeGroup.add(selected);
-        shapes.remove(selected); //!!!!!!!!!!!!!!!!!!!!!!
+        shapes.remove(selected);
         activeGroup.setSelected(true);
     }
     public void disconnectGroup() {
-        activeGroup.returnShapesToBoard();
+		List<Shape> list = activeGroup.getShapesInGroup();
+		for(Shape shape: list) {
+			shapes.add(shape);
+		}
         shapes.remove(activeGroup);
         selected = shapes.get(0);
     }

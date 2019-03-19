@@ -7,22 +7,18 @@ import java.util.List;
 public class Group extends Shape{
 
     private List<Shape> shapesInGroup = new ArrayList<>();
-    private Board board;
 
-    public Group(GraphicsContext gc, Board board, double x, double y) {
+    public Group(GraphicsContext gc, double x, double y) {
         super(gc, x, y);
-        this.board = board;
     }
 
     public void add(Shape shape) {
         shapesInGroup.add(shape);
     }
 
-    public void returnShapesToBoard() {
-        for(Shape shape: shapesInGroup) {
-            board.add(shape);
-        }
-    }
+	public List<Shape> getShapesInGroup() {
+		return shapesInGroup;
+	}
 
     @Override
     public void setSelected(boolean selected) {
