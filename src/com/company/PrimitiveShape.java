@@ -20,8 +20,7 @@ public class PrimitiveShape {
 	private double size;
 	private List<PrimitiveShape> list;
 	
-	public PrimitiveShape {
-		
+	public PrimitiveShape {	
 	}
 	
 	public Shape.ShapeType getShapeType() {
@@ -60,7 +59,6 @@ public class PrimitiveShape {
 		if(shape instanceof Group) {
 			
 		}
-		
 		return output;
 	}
 	
