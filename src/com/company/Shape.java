@@ -22,10 +22,12 @@ public abstract class Shape {
     public double getX() {
         return x;
     }
-
     public double getY() {
         return y;
     }
+	public double getSize() {
+		return SIZE;
+	}
 
     public void setSelected(boolean selected) {
         isSelected = selected;
